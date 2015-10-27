@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=25mm]{geometry}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows,decorations,positioning}
+
+% CPP LOGO
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+
+\raggedbottom  
+\raggedright
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+
+\pagestyle{empty}
+
+% HEADING
+\begin{tikzpicture}[remember picture, overlay, transform shape]
+\node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=3.75em, fill] at (current page.north west) 
+{\textcolor{white}{
+	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em] 
+	{\Large Computer Science Graduate} \\[0.25em] 
+	{\begin{tabular}{c c c c c} 
+	+44 (0)7449 815 434 (UK) & \textbullet & 
+	{\tt pv273@cam.ac.uk} & \textbullet 
+	& +381 (0)62 270 658 (Serbia)
+	\end{tabular}} 
+	}
+};
+\end{tikzpicture}
+
+\vspace{10em}
+
+ADD CONTENT HERE
+
+\end{document}
