@@ -37,6 +37,7 @@
 \newcommand{\fillbar}[2]{%
 \begin{tikzpicture}
 	\draw[thick, maincolour] (0, 0) rectangle (2.6, 0.25);
+	\fill[lightgray] (0, 0) rectangle(2.6, 0.25);
 	\fill[maincolour] (#1, 0) rectangle (#2, 0.25);
 \end{tikzpicture}
 }
@@ -202,9 +203,9 @@ s
 \begin{tabular}{L!{\VRule}D}
 {\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet} \\ Proficient} & C/\CC, C$^\sharp$, Java, OCaml, \LaTeX, PGF/Ti\emph{k}Z, \texttt{git}, \textsc{Unix}\newline Algorithms, Data Structures, Machine Learning, Bioinformatics, Teaching
 \\[5pt]
-{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$} \\ Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
+{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textcolor{lightgray}{\textbullet}} \\ Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
 \\[5pt]
-{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$\ \!$\circ$} \\ Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
+{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textcolor{lightgray}{\textbullet}\ \!\textcolor{lightgray}{\textbullet}} \\ Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
 \end{tabular}
 
 \end{document}
