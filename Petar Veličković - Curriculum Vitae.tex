@@ -14,19 +14,15 @@
 \setlist{nosep}
 \usetikzlibrary{arrows,decorations,positioning}
 
+\definecolor{lightgray}{gray}{0.8}
+\definecolor{maincolour}{HTML}{000080} % MAIN COLOR
+
+
 % CPP LOGO
 \def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
 
-\raggedbottom  
-\raggedright
-
-\newcommand{\keywordbox}[1]{%
-\begin{tikzpicture}
-\node[node distance=0.5cm,rounded corners=2pt, draw=black, fill=black, text=white, minimum height=4mm, inner sep=0.5ex] at (0,0){\tiny\tt\bfseries #1};
-\end{tikzpicture}
-}
-
-\definecolor{lightgray}{gray}{0.8}
+% FAT TILDE
+\def\mysim{{\textcolor{maincolour}{$\LARGE\boldsymbol\sim$}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
@@ -38,6 +34,27 @@
 \newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
 \newcolumntype{D}{p{0.82\textwidth}}
 
+\newcommand{\fillbar}[2]{%
+\begin{tikzpicture}
+	\draw[thick, maincolour] (0, 0) rectangle (2.6, 0.25);
+	\fill[maincolour] (#1, 0) rectangle (#2, 0.25);
+\end{tikzpicture}
+}
+
+\newcommand{\heading}[1]{%
+{\LARGE \bf \textcolor{maincolour}{#1}}
+\textcolor{maincolour}{\divider}
+}
+
+\raggedbottom  
+\raggedright
+
+\newcommand{\keywordbox}[1]{%
+\begin{tikzpicture}
+\node[node distance=0.5cm,rounded corners=2pt, draw=black, fill=maincolour, text=white, minimum height=4mm, inner sep=0.5ex] at (0,0){\tiny\tt\bfseries #1};
+\end{tikzpicture}
+}
+
 
 \begin{document}
 
@@ -45,7 +62,7 @@
 
 % HEADING
 \begin{tikzpicture}[remember picture, overlay, transform shape]
-\node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=4.5em, fill] at (current page.north west) 
+\node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=4.5em, fill=maincolour] at (current page.north west) 
 {\textcolor{white}{
 	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em] 
 	{\Large Computer Science Graduate} \\[0.25em] 
@@ -60,21 +77,23 @@
 s
 \vspace{6em}
 
-{\LARGE \bf Education}
-\divider
+\heading{Education}
 \begin{tabular}{L!{\VRule}D}
-{\hrule 2012--2015} & {\textbf{Trinity College, University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{BA Hons. (Cantab.) in Computer Science} 
+{\fillbar{1.49}{2.6}
+ \\ 2012--2015} & {\textbf{Trinity College, University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{BA Hons.\ (Cantab.), Computer Science} 
 	\vspace{0.5em}
 \begin{itemize}
-	\item[$\sim$] Results:
-	Part IA: Class I (rank 10/83)
-	Part IB: Class I (rank 13/80)
-	Part II: Class I (rank 9/74)
+	\item[$\sim$] Results:\vspace{-0.7em}
+	\begin{tabbing}
+	\hspace{0.5em}--\hspace{0.2em} Part IA\=:\ \= Class I (rank 1\=0/83)\\
+	\hspace{0.5em}--\hspace{0.2em} Part IB\>:\> Class I (rank 13/80)\\
+	\hspace{0.5em}--\hspace{0.2em} Part II\>:\> Class I (rank \>9/74)
+	\end{tabbing}\vspace{-0.7em}
 	\item[$\sim$] Final-year dissertation: \emph{``Molecular multiplex network inference''} (mark 80/100)
 \end{itemize}\vspace{-\baselineskip}\mbox{}
 	}
 \\[5pt]
-{\hrule 2008--2012} & {\textbf{Matemati\v{c}ka gimnazija} \hfill Belgrade, Serbia \newline \textit{Mathematical Grammar School} 
+{\fillbar{0}{1.49} \\ 2008--2012} & {\textbf{Matemati\v{c}ka gimnazija} \hfill Belgrade, Serbia \newline \textit{Mathematical Grammar School} 
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] GPA: 5.00/5.00
@@ -86,11 +105,10 @@ s
 
 \vspace{2em}
 
-{\LARGE \bf Work Experience}
-\divider
+\heading{Work Experience}
 
 \begin{tabular}{L!{\VRule}D}
-{\hrule Jun--Sep 2015} & {\textbf{Jane Street Europe Limited} \hfill London, United Kingdom \newline \textit{Software Developer Intern}\vspace{0.5em}
+{\fillbar{2.385}{2.478} \\ Jun--Sep 2015} & {\textbf{Jane Street Europe Limited} \hfill London, United Kingdom \newline \textit{Software Developer Intern}\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Development of a translator from a new S-expression based linear temporal logic (LTL) query language into a form recognisable by an existing LTL query solver
 	\item[$\sim$] Development of an algorithm and model implementation that automates a critical process within a distributed system used for the purposes of facilitating trading
@@ -99,7 +117,7 @@ s
 	\vspace{0.5em}
 	\keywordbox{OCaml}\keywordbox{C}\keywordbox{Core}\keywordbox{LTL}\keywordbox{RPC}\keywordbox{Async}\keywordbox{vim}\keywordbox{Mercurial}\keywordbox{Unix}}
 \\[5pt]
-{\hrule Jun--Aug 2014} & {\textbf{University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{Undergraduate Researcher} 
+{\fillbar{2.015}{2.077} \\ Jun--Aug 2014} & {\textbf{University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{Undergraduate Researcher} 
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Computer Laboratory | Computer Architecture Group
@@ -109,7 +127,7 @@ s
 	\vspace{0.5em}
 	\keywordbox{Bluespec}\keywordbox{SystemVerilog}\keywordbox{C}\keywordbox{Assembly}\keywordbox{Altera Quartus}\keywordbox{FPGA}\keywordbox{git}\keywordbox{Kernel}\keywordbox{Unix}}
 \\[5pt]
-{\hrule Jun--Sep 2013} & {\textbf{Microsoft Development Center Serbia} \hfill Belgrade, Serbia \newline \textit{Intern Software Design Engineer} 
+{\fillbar{1.645}{1.738} \\ Jun--Sep 2013} & {\textbf{Microsoft Development Center Serbia} \hfill Belgrade, Serbia \newline \textit{Intern Software Design Engineer} 
 	\vspace{0.5em}
 \begin{itemize}
 \item[$\sim$] SQL Server Team | Service Foundation Division
@@ -122,53 +140,51 @@ s
 
 \newpage
 
-{\LARGE \bf Publications}
-\divider
+\heading{Publications}
 
 \begin{tabular}{L!{\VRule}D}
-{$\LARGE\boldsymbol\sim$ \\ October 2015} & {\textbf{Molecular multiplex network inference using GMHMMs} \newline \textbf{\textsc{Veli\v{c}kovi\'{c}, P.}} \textsc{and Li\`{o}, P.} \newline
+{\mysim \\ October 2015} & {\textbf{Molecular multiplex network inference using GMHMMs} \newline \textbf{\textsc{Veli\v{c}kovi\'{c}, P.}} \textsc{and Li\`{o}, P.} \newline
 \emph{Journal of Complex Networks (in press)}}
 \\
 \end{tabular}
 
 \vspace{2em}
 
-{\LARGE \bf Honours \& Awards}
-\divider
+\heading{Honours \& Awards}
 
 \begin{tabular}{L!{\VRule}D}
-{$\LARGE\boldsymbol\sim$ \\ November 2014} & {\textbf{ACM-ICPC NWERC 2014 --- Bronze Medal} \hfill {Link\"{o}ping, Sweden} \newline \emph{Association for Computing Machinery}}
+{\mysim \\ November 2014} & {\textbf{ACM-ICPC NWERC 2014 --- Bronze Medal} \hfill {Link\"{o}ping, Sweden} \newline \emph{Association for Computing Machinery}}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ July 2014} & {\textbf{Senior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
+{\mysim \\ July 2014} & {\textbf{Senior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Elected due to high performance in Part IB of the Computer Science Tripos
 	\item[$\sim$] Re-elected for another year (in July 2015) due to high performance in Part II
 \end{itemize}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ July 2013} & {\textbf{Junior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
+{\mysim \\ July 2013} & {\textbf{Junior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Elected due to high performance in Part IA of the Computer Science Tripos
 \end{itemize}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ June 2013} & {\textbf{Dositeja award} \hfill {Belgrade, Serbia} \newline \emph{Fund for Young Talents of Serbia}}
+{\mysim \\ June 2013} & {\textbf{Dositeja award} \hfill {Belgrade, Serbia} \newline \emph{Fund for Young Talents of Serbia}}
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Awarded to high-school students for great performance at acknowledged national and international competitions during the 2011/12 school year
 	\end{itemize}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ June 2012} & {\textbf{Best Final-year project in the area of Informatics} \hfill {Belgrade, Serbia} \newline \emph{Matemati\v{c}ka gimnazija}}
+{\mysim \\ June 2012} & {\textbf{Best Final-year project in the area of Informatics} \hfill {Belgrade, Serbia} \newline \emph{Matemati\v{c}ka gimnazija}}
 	\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$] Awarded for the best Informatics-related project in the school's 2012 generation
 	\end{itemize}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ May 2012} & {\textbf{Cambridge Overseas Trust Scholarship} \hfill {Cambridge, United Kingdom} \newline \emph{Cambridge Commonwealth, European and International Trust}}
+{\mysim \\ May 2012} & {\textbf{Cambridge Overseas Trust Scholarship} \hfill {Cambridge, United Kingdom} \newline \emph{Cambridge Commonwealth, European and International Trust}}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ May 2012} & {\textbf{Trinity Overseas Bursary} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
+{\mysim \\ May 2012} & {\textbf{Trinity Overseas Bursary} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
 \\[5pt]
-{$\LARGE\boldsymbol\sim$ \\ 2009--2012} & {\textbf{Serbian High School Competition Awards} \hfill {Belgrade, Serbia} \newline \emph{Mathematical and Physical Societies of Serbia}}\vspace{0.5em}
+{\mysim \\ 2009--2012} & {\textbf{Serbian High School Competition Awards} \hfill {Belgrade, Serbia} \newline \emph{Mathematical and Physical Societies of Serbia}}\vspace{0.5em}
 \begin{itemize}
 	\item[$\sim$]{Serbian Olympiad in Informatics - Third Prize (May 2012)}
 	\item[$\sim$]{National Competition in Informatics - Second Prize (April 2012)}
@@ -181,15 +197,14 @@ s
 
 \vspace{2em}
 
-{\LARGE \bf Skills}
-\divider
+\heading{Skills}
 
 \begin{tabular}{L!{\VRule}D}
-{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet \\ Proficient} & C/\CC, C$^\sharp$, Java, OCaml, \LaTeX, PGF/Ti\emph{k}Z, \texttt{git}, \textsc{Unix}\newline Algorithms, Data Structures, Machine Learning, Bioinformatics, Teaching
+{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet} \\ Proficient} & C/\CC, C$^\sharp$, Java, OCaml, \LaTeX, PGF/Ti\emph{k}Z, \texttt{git}, \textsc{Unix}\newline Algorithms, Data Structures, Machine Learning, Bioinformatics, Teaching
 \\[5pt]
-{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$ \\ Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
+{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$} \\ Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
 \\[5pt]
-{\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$\ \!$\circ$ \\ Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
+{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!$\circ$\ \!$\circ$} \\ Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
 \end{tabular}
 
 \end{document}
