@@ -1,5 +1,9 @@
 \documentclass[11pt]{article}
 
+%%%%%%%%%%%%%%%%%%%%
+% Loading packages %
+%%%%%%%%%%%%%%%%%%%%
+
 \usepackage[margin=15mm]{geometry}
 \usepackage{amsmath}
 \usepackage{hyperref}
@@ -9,65 +13,172 @@
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{enumitem}
-%\usepackage{ebgaramond}
+
+% Any additional packages to be loaded here
+
+%%%%%%%%%%%%%%%%%
+% Package setup %
+%%%%%%%%%%%%%%%%%
 
 \setlist{nosep}
 \usetikzlibrary{arrows,decorations,positioning}
 
-\definecolor{lightgray}{gray}{0.8}
-\definecolor{maincolour}{HTML}{191970} % MAIN COLOR
+% Any further package setup should be done here
 
+%%%%%%%%%%%%%%
+% Page setup %
+%%%%%%%%%%%%%%
 
-% CPP LOGO
-\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+% Discourage widows and orphans
+\raggedbottom  
+\raggedright
 
-% FAT TILDE
-\def\mysim{{\textcolor{maincolour}{$\LARGE\boldsymbol\sim$}}}
-
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-\newcommand{\SRule}{\rule{\linewidth}{0.2pt}}
-\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+% Remove separations
 \setlength{\parindent}{0pt}
 \setlength{\itemsep}{0pt}
 
-\newcommand{\divider}{\vskip-7pt\HRule\hfill\vskip-1.1em\SRule\vskip1em}
-
+% Defining the layout of tabular columns
 \newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
 \newcolumntype{D}{p{0.82\textwidth}}
 
-\newcommand{\fillbar}[2]{%
-\begin{tikzpicture}
-	\draw[thick, maincolour] (0, 0) rectangle (2.6, 0.25);
-	\fill[lightgray] (0, 0) rectangle(2.6, 0.25);
-	\fill[maincolour] (#1, 0) rectangle (#2, 0.25);
-\end{tikzpicture}
-}
+% Any further page setup commands should be placed here
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom colour definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The lightgray colour is used as the rule colour 
+% for the vertical delimiter, as well as the fill 
+% colour of "empty" circles and the timeline
+\definecolor{lightgray}{gray}{0.8}
+
+% "maincolour" is the main colour of the CV; used for all
+% headings in the document, keyword boxes, etc.
+% Its default value is "Midnight Blue" (#191970)
+\definecolor{maincolour}{HTML}{191970}
+
+% Any further colour definitions should be placed here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom symbol definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% C++ logo (better-looking than outright typing C++)
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+
+% "Fat Tilde" symbol, used as the main bullet
+% when the timeline isn't used
+\def\mysim{{\textcolor{maincolour}{$\LARGE\boldsymbol\sim$}}}
+
+% Any further custom symbols should be defined here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom command definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Custom rules: thick horizontal, thin horizontal, vertical
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\SRule}{\rule{\linewidth}{0.2pt}}
+\newcommand{\VRule}{\color{lightgray}\vrule width 0.5pt}
+
+% "Divider" that comes after each sub-heading
+\newcommand{\divider}{\vskip-7pt\HRule\hfill\vskip-1.1em\SRule\vskip1em}
+
+% This is the command used to produce each sub-heading.
+% Usage: \heading{Heading text}.
 \newcommand{\heading}[1]{%
 {\LARGE \bf \textcolor{maincolour}{#1}}
 \textcolor{maincolour}{\divider}
 }
 
-\raggedbottom  
-\raggedright
+% This is the command used to produce the "timeline" bullet.
+% Usage: \fillbar{x}{y}{Date}, where x and y are floating-point
+% numbers between 0 and 2.6. Precondition: x < y.
+\newcommand{\fillbar}[3]{%
+\begin{tikzpicture}
+	\draw[thick, maincolour] (0, 0) rectangle (2.6, 0.25);
+	\fill[lightgray] (0, 0) rectangle (2.6, 0.25);
+	\fill[maincolour] (#1, 0) rectangle (#2, 0.25);
+\end{tikzpicture} \\ #3
+}
 
+% This is the command used to produce the "fat tilde" bullet.
+% Usage: \mytilde{Date}
+\newcommand{\mytilde}[1]{\mysim \\ #1}
+
+% This is the command used to produce the "x stars out of y" bullet.
+% Usage: \stars{x}{y}{subtext}.
+\newcount\starid
+\newcommand{\stars}[3]{%
+{\starid=0
+\loop
+	\advance\starid by 1
+	\ifnum\starid>#1 \textcolor{lightgray}{\!\textbullet}
+	\else \textcolor{maincolour}{\!\textbullet}
+	\fi
+	\ifnum\starid<#2
+\repeat} \\ #3
+}
+
+% This is the command used to produce the keyword box.
+% Usage: \keywordbox{keyword}.
 \newcommand{\keywordbox}[1]{%
 \begin{tikzpicture}
 \node[node distance=0.5cm,rounded corners=2pt, draw=maincolour, fill=maincolour, text=white, minimum height=3mm, text height=1.6ex, text depth=0.3ex, inner sep=0.5ex] at (0,0){\footnotesize\tt\bfseries #1};
 \end{tikzpicture}
 }
 
+% This is the wrapper for the table used in each section.
+% Separate columns by & and rows by \\.
+% Usage: \cvtable{a & b \\ c & d \\ e & f}.
+\newcommand{\cvtable}[1]{%
+\begin{tabular}{L!{\VRule}D}#1\end{tabular}}
+
+% This is the command used to produce the main item text.
+% Usage: \mainitem{Name}{Title}{City1}{City2}.
+\newcommand{\mainitem}[4]{\textbf{#1} \hfill #3 \newline \emph{#2} \hfill #4}
+
+% This is the command used to produce a publication item.
+% Usage: \pubitem{Title}{Authors}{Journal}.
+\newcommand{\pubitem}[3]{\textbf{#1} \newline \textsc{#2} \newline \emph{#3}}
+
+% These commands are used to wrap sub-items.
+% Usage: 
+% \sitemize{
+%   \sitem Item 
+%   \sitem Item2
+% }
+\newcommand{\sitemize}[1]{%
+	\vspace{0.5em}
+	\begin{itemize}
+		#1	
+	\end{itemize}
+}
+\newcommand{\sitem}{\item[$\sim$]}
+
+% Any further custom commands should be defined here
+
+%%%%%%%%%%%%%%%%%%%%%
+% START OF DOCUMENT %
+%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+% Avoid printing page numbers
 \pagestyle{empty}
 
-% HEADING
+%%%%%%%%%%%%%%%%%
+% MAJOR HEADING %
+%%%%%%%%%%%%%%%%%
+
 \begin{tikzpicture}[remember picture, overlay, transform shape]
 \node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=4.5em, fill=maincolour] at (current page.north west) 
 {\textcolor{white}{
-	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em] 
+	% Name
+	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em]
+	% Tagline 
 	{\Large Computer Science Graduate} \\[0.25em] 
+	% Contact data
 	{\begin{tabular}{c c c c c} 
 	+44 (0)7449 815 434 (UK) & \textbullet & 
 	{\tt pv273@cam.ac.uk} & \textbullet 
@@ -76,137 +187,176 @@
 	}
 };
 \end{tikzpicture}
-s
+
 \vspace{6em}
 
+%%%%%%%%%%%%%
+% EDUCATION %
+%%%%%%%%%%%%%
+
 \heading{Education}
-\begin{tabular}{L!{\VRule}D}
-{\fillbar{1.49}{2.6}
- \\ 2012--2015} & {\textbf{Trinity College, University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{BA Hons.\ (Cantab.), Computer Science} 
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Results:\vspace{-0.7em}
-	\begin{tabbing}
-	\hspace{0.5em}--\hspace{0.2em} Part IA\=:\ \= Class I (rank 1\=0/83)\\
-	\hspace{0.5em}--\hspace{0.2em} Part IB\>:\> Class I (rank 13/80)\\
-	\hspace{0.5em}--\hspace{0.2em} Part II\>:\> Class I (rank \>9/74)
-	\end{tabbing}\vspace{-0.7em}
-	\item[$\sim$] Final-year dissertation: \emph{``Molecular multiplex network inference''} (mark 80/100)
-\end{itemize}\vspace{-\baselineskip}\mbox{}
-	}
-\\[5pt]
-{\fillbar{0}{1.49} \\ 2008--2012} & {\textbf{Matemati\v{c}ka gimnazija} \hfill Belgrade, Serbia \newline \textit{Mathematical Grammar School} 
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] GPA: 5.00/5.00
-	\item[$\sim$] Final-year project: \emph{``Development of a software emulator for the GameBoy console''}
-\end{itemize}\vspace{-\baselineskip}\mbox{}
-	}
-\\
-\end{tabular}
+
+\cvtable{%
+
+\fillbar{1.49}{2.6}{2012--2015} & \mainitem{Trinity College, University of Cambridge} {BA Hons.\ (Cantab.), Computer Science}{Cambridge, United Kingdom}{} 
+	
+\sitemize{%
+	\sitem Results:
+		% Here a custom tabbed environment is used
+		\vspace{-0.7em}
+		\begin{tabbing}	
+			\hspace{0.5em}--\hspace{0.2em} Part IA\=:\ \= Class I (rank 1\=0/83)\\
+			\hspace{0.5em}--\hspace{0.2em} Part IB\>:\> Class I (rank 13/80)\\
+			\hspace{0.5em}--\hspace{0.2em} Part II\>:\> Class I (rank \>9/74)
+		\end{tabbing}\vspace{-0.7em}
+	\sitem Final-year dissertation: \emph{``Molecular multiplex network inference''} (mark 80/100)
+}\vspace{-\baselineskip}\mbox{}
+\\[5pt] % Use consistent spacing to delimit items
+
+\fillbar{0}{1.49}{2008--2012} & \mainitem{Matemati\v{c}ka gimnazija}{Mathematical Grammar School}{Belgrade, Serbia}{}
+
+\sitemize{%
+	\sitem GPA: 5.00/5.00
+	\sitem Final-year project: \emph{``Development of a software emulator for the GameBoy console''}
+}\vspace{-\baselineskip}\mbox{} % To remove extra space after the subitems
+}
 
 \vspace{1.9em}
+
+%%%%%%%%%%%%%%%%%%%
+% WORK EXPERIENCE %
+%%%%%%%%%%%%%%%%%%%
 
 \heading{Work Experience}
 
-\begin{tabular}{L!{\VRule}D}
-{\fillbar{2.385}{2.478} \\ Jun--Sep 2015} & {\textbf{Jane Street Europe Limited} \hfill London, United Kingdom \newline \textit{Software Developer Intern} \hfill New York, United States\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Development of a translator from a new S-expression based linear temporal logic (LTL) query language into a form recognisable by an existing LTL query solver
-	\item[$\sim$] Development of an algorithm and model implementation that automates a critical process within a distributed system used for the purposes of facilitating trading
-	\item[$\sim$] Optimisations of several subroutines within Jane Street's Bignum library for arbitrary precision arithmetic, as well as the underlying open-source project (Zarith)
-	\end{itemize}
-	\vspace{0.5em}
-	\keywordbox{OCaml}\keywordbox{C}\keywordbox{Core}\keywordbox{LTL}\keywordbox{RPC}\keywordbox{Async}\keywordbox{vim}\keywordbox{Mercurial}\keywordbox{Unix}}
-\\[5pt]
-{\fillbar{2.015}{2.077} \\ Jun--Aug 2014} & {\textbf{University of Cambridge} \hfill Cambridge, United Kingdom \newline \textit{Undergraduate Researcher} 
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Computer Laboratory | Computer Architecture Group
-	\item[$\sim$] Exploring the teaching and research potentials of the recent Arrow SoCKit board containing the Altera Cyclone V System-on-Chip FPGA
-	\item[$\sim$] Development of hardware and tools for debugging and tracing, as part of the ongoing CHERI research project (\texttt{http://chericpu.org})
-	\end{itemize} 
-	\vspace{0.5em}
-	\keywordbox{Bluespec}\keywordbox{SystemVerilog}\keywordbox{C}\keywordbox{Assembly}\keywordbox{Altera Quartus}\keywordbox{FPGA}\keywordbox{git}\keywordbox{Kernel}\keywordbox{Unix}}
-\\[5pt]
-{\fillbar{1.645}{1.738} \\ Jun--Sep 2013 \\ } & {\textbf{Microsoft Development Center Serbia} \hfill Belgrade, Serbia \newline \textit{Intern Software Design Engineer} 
-	\vspace{0.5em}
-\begin{itemize}
-\item[$\sim$] SQL Server Team | Service Foundation Division
-\item[$\sim$] Worked on development of the prototype for a new C$^\sharp$ and WCF-based stress testing tool on SQL Azure production clusters
-\end{itemize} 
-	\vspace{0.5em}
-	\keywordbox{C\#}\keywordbox{WCF}\keywordbox{.NET}\keywordbox{SQL}\keywordbox{Async}\keywordbox{TCP}\keywordbox{Visual Studio}\keywordbox{Windows}}
-\\
-\end{tabular}
+\cvtable{%
 
+\fillbar{2.385}{2.478}{Jun--Sep 2015} & \mainitem{Jane Street Europe Limited}{Software Developer Intern}{London, United Kingdom}{New York, United States}
+
+\sitemize{%
+	\sitem Development of a translator from a new S-expression based linear temporal logic (LTL) query language into a form recognisable by an existing LTL query solver
+	\sitem Development of an algorithm and model implementation that automates a critical process within a distributed system used for the purposes of facilitating trading
+	\sitem Optimisations of several subroutines within Jane Street's Bignum library for arbitrary precision arithmetic, as well as the underlying open-source project (Zarith)
+} % Here we do not need to remove space, as we have further content under the sub-items
+\vspace{0.5em}
+\keywordbox{OCaml}\keywordbox{C}\keywordbox{Core}\keywordbox{LTL}\keywordbox{RPC}\keywordbox{Async}\keywordbox{vim}\keywordbox{Mercurial}\keywordbox{Unix}
+\\[5pt]
+
+\fillbar{2.015}{2.077}{Jun--Aug 2014} & \mainitem{University of Cambridge}{Undergraduate Researcher}{Cambridge, United Kingdom}{} 
+
+\sitemize{%
+	\sitem Computer Laboratory | Computer Architecture Group
+	\sitem Exploring the teaching and research potentials of the recent Arrow SoCKit board containing the Altera Cyclone V System-on-Chip FPGA
+	\sitem Development of hardware and tools for debugging and tracing, as part of the ongoing CHERI research project (\texttt{http://chericpu.org})
+} 	
+\vspace{0.5em}
+\keywordbox{Bluespec}\keywordbox{SystemVerilog}\keywordbox{C}\keywordbox{Assembly}\keywordbox{Altera Quartus}\keywordbox{FPGA}\keywordbox{git}\keywordbox{Kernel}\keywordbox{Unix}
+\\[5pt]
+
+\fillbar{1.645}{1.738}{Jun--Sep 2013} & \mainitem{Microsoft Development Center Serbia}{Intern Software Design Engineer}{Belgrade, Serbia}{}
+
+\sitemize{%
+	\sitem SQL Server Team | Service Foundation Division
+	\sitem Worked on development of the prototype for a new C$^\sharp$ and WCF-based stress testing tool on SQL Azure production clusters
+}
+\vspace{0.5em}
+\keywordbox{C\#}\keywordbox{WCF}\keywordbox{.NET}\keywordbox{SQL}\keywordbox{Async}\keywordbox{TCP}\keywordbox{Visual Studio}\keywordbox{Windows}
+}
+
+% Breaking the page early here to make a nice split.
+% Remove or place elsewhere if necessary.
 \newpage
+
+%%%%%%%%%%%%%%%%
+% PUBLICATIONS %
+%%%%%%%%%%%%%%%%
 
 \heading{Publications}
 
-\begin{tabular}{L!{\VRule}D}
-{\mysim \\ October 2015} & {\textbf{Molecular multiplex network inference\newline using Gaussian mixture hidden Markov models} \newline \textbf{\textsc{Veli\v{c}kovi\'{c}, P.}} \textsc{and Li\`{o}, P.} \newline
-\emph{Journal of Complex Networks (in press)}}
-\\
-\end{tabular}
+\cvtable{%
+
+\mytilde{October 2015} & \pubitem{Molecular multiplex network inference\newline using Gaussian mixture hidden Markov models}{\textbf{Veli\v{c}kovi\'{c}, P.} and Li\`{o}, P.}{Journal of Complex Networks (in press)}
+}
 
 \vspace{1.9em}
+
+%%%%%%%%%%%%%%%%%%%%
+% HONOURS & AWARDS %
+%%%%%%%%%%%%%%%%%%%%
 
 \heading{Honours \& Awards}
 
-\begin{tabular}{L!{\VRule}D}
-{\mysim \\ November 2014} & {\textbf{ACM-ICPC NWERC 2014 --- Bronze Medal} \hfill {Link\"{o}ping, Sweden} \newline \emph{Association for Computing Machinery}}
+\cvtable{%
+
+\mytilde{November 2014} & \mainitem{ACM-ICPC NWERC 2014 --- Bronze Medal}{Association for Computing Machinery}{Link\"{o}ping, Sweden}{}
 \\[5pt]
-{\mysim \\ July 2014} & {\textbf{Senior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Elected due to high performance in Part IB of the Computer Science Tripos
-	\item[$\sim$] Re-elected for another year (in July 2015) due to high performance in Part II
-\end{itemize}\vspace{-\baselineskip}\mbox{}
+
+\mytilde{July 2014} & \mainitem{Senior Scholar}{Trinity College, University of Cambridge}{Cambridge, United Kingdom}{}
+	
+\sitemize{%
+	\sitem Elected due to high performance in Part IB of the Computer Science Tripos
+	\sitem Re-elected for another year (in July 2015) due to high performance in Part II
+}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{\mysim \\ July 2013} & {\textbf{Junior Scholar} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Elected due to high performance in Part IA of the Computer Science Tripos
-\end{itemize}\vspace{-\baselineskip}\mbox{}
+
+\mytilde{July 2013} & \mainitem{Junior Scholar}{Trinity College, University of Cambridge}{Cambridge, United Kingdom}{}
+
+\sitemize{%
+	\sitem Elected due to high performance in Part IA of the Computer Science Tripos
+}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{\mysim \\ June 2013} & {\textbf{Dositeja award} \hfill {Belgrade, Serbia} \newline \emph{Fund for Young Talents of Serbia}}
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Awarded to high-school students for great performance at acknowledged national and international competitions during the 2011/12 school year
-	\end{itemize}\vspace{-\baselineskip}\mbox{}
+
+\mytilde{June 2013} & \mainitem{Dositeja award}{Fund for Young Talents of Serbia}{Belgrade, Serbia}{}
+	
+\sitemize{%
+	\sitem Awarded to high-school students for great performance at acknowledged national and international competitions during the 2011/12 school year
+}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{\mysim \\ June 2012} & {\textbf{Best Final-year project in the area of Informatics} \hfill {Belgrade, Serbia} \newline \emph{Matemati\v{c}ka gimnazija}}
-	\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$] Awarded for the best Informatics-related project in the school's 2012 generation
-	\end{itemize}\vspace{-\baselineskip}\mbox{}
+
+\mytilde{June 2012} & \mainitem{Best Final-year project in the area of Informatics}{Matemati\v{c}ka gimnazija}{Belgrade, Serbia}{}
+\sitemize{%
+	\sitem Awarded for the best Informatics-related project in the school's 2012 generation
+}\vspace{-\baselineskip}\mbox{}
 \\[5pt]
-{\mysim \\ May 2012} & {\textbf{Cambridge Overseas Trust Scholarship} \hfill {Cambridge, United Kingdom} \newline \emph{Cambridge Commonwealth, European and International Trust}}
+
+\mytilde{May 2012} & \mainitem{Cambridge Overseas Trust Scholarship}{Cambridge Commonwealth, European and International Trust}{Cambridge, United Kingdom}{}
 \\[5pt]
-{\mysim \\ May 2012} & {\textbf{Trinity Overseas Bursary} \hfill {Cambridge, United Kingdom} \newline \emph{Trinity College, University of Cambridge}}
+
+\mytilde{May 2012} & \mainitem{Trinity Overseas Bursary}{Trinity College, University of Cambridge}{Cambridge, United Kingdom}{}
 \\[5pt]
-{\mysim \\ 2009--2012} & {\textbf{Serbian High School Competition Awards} \hfill {Belgrade, Serbia} \newline \emph{Mathematical and Physical Societies of Serbia}}\vspace{0.5em}
-\begin{itemize}
-	\item[$\sim$]{Serbian Olympiad in Informatics - Third Prize (May 2012)}
-	\item[$\sim$]{National Competition in Informatics - Second Prize (April 2012)}
-	\item[$\sim$]{National Competition in Physics - Honourable Mention (April 2011)}
-	\item[$\sim$]{National Competition in Mathematics - Honourable Mention (March 2010)}
-	\item[$\sim$]{National Competition in Physics - Honourable Mention (April 2009)}
-	\end{itemize}\vspace{-\baselineskip}\mbox{}
-\\
-\end{tabular}
+
+\mytilde{2009--2012} & \mainitem{Serbian High School Competition Awards}{Mathematical and Physical Societies of Serbia}{Belgrade, Serbia}{}
+
+\sitemize{%
+	\sitem Serbian Olympiad in Informatics - Third Prize (May 2012)
+	\sitem National Competition in Informatics - Second Prize (April 2012)
+	\sitem National Competition in Physics - Honourable Mention (April 2011)
+	\sitem National Competition in Mathematics - Honourable Mention (March 2010)
+	\sitem National Competition in Physics - Honourable Mention (April 2009)
+}\vspace{-\baselineskip}\mbox{}
+}
 
 \vspace{1.9em}
 
+%%%%%%%%%%
+% SKILLS %
+%%%%%%%%%%
+
 \heading{Skills}
 
-\begin{tabular}{L!{\VRule}D}
-{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet} \\ Proficient} & C/\CC, C$^\sharp$, Java, OCaml, \LaTeX, PGF/Ti\emph{k}Z, \texttt{git}, \textsc{Unix}\newline Algorithms, Data Structures, Machine Learning, Bioinformatics, Teaching
+\cvtable{%
+
+\stars{5}{5}{Proficient} & C/\CC, C$^\sharp$, Java, OCaml, \LaTeX, PGF/Ti\emph{k}Z, \texttt{git}, \textsc{Unix}\newline Algorithms, Data Structures, Machine Learning, Bioinformatics, Teaching
 \\[5pt]
-{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textbullet\ \!\textcolor{lightgray}{\textbullet}} \\ Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
+
+\stars{4}{5}{Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
 \\[5pt]
-{\textcolor{maincolour}{\textbullet\ \!\textbullet\ \!\textbullet\ \!\textcolor{lightgray}{\textbullet}\ \!\textcolor{lightgray}{\textbullet}} \\ Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
-\end{tabular}
+
+\stars{3}{5}{Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
+}
+
+%%%%%%%%%%%%%%%%%%%
+% END OF DOCUMENT %
+%%%%%%%%%%%%%%%%%%%
 
 \end{document}
