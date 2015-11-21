@@ -1,5 +1,5 @@
 # Curriculum-Vitae
-The latest version of my CV, powered by LaTeX and TikZ.
+The latest version of my CV (with matching cover letter), powered by LaTeX and TikZ.
 
 ## License
 MIT
