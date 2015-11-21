@@ -1,0 +1,190 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Cover Letter         %
+% by Petar 'PetarV' Veličković %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%
+% Loading packages %
+%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[UKenglish]{isodate}
+
+% Any additional packages to be loaded here
+
+%%%%%%%%%%%%%%%%%
+% Package setup %
+%%%%%%%%%%%%%%%%%
+
+\setlist{nosep}
+\usetikzlibrary{arrows,decorations,positioning}
+
+% Any further package setup should be done here
+
+%%%%%%%%%%%%%%
+% Page setup %
+%%%%%%%%%%%%%%
+
+% Discourage widows and orphans
+\raggedbottom
+
+% Remove separations
+\setlength{\parindent}{0pt}
+\setlength{\itemsep}{0pt}
+
+% Defining the layout of tabular columns
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{D}{p{0.82\textwidth}}
+
+% Write dates in minimal format
+\cleanlookdateon
+
+% Any further page setup commands should be placed here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom colour definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% "maincolour" is the main colour of the CV; used for all
+% headings in the document, keyword boxes, etc.
+% Its default value is "Midnight Blue" (#191970)
+\definecolor{maincolour}{HTML}{191970}
+
+% Any further colour definitions should be placed here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom symbol definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% C++ logo (better-looking than outright typing C++)
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+
+% Any further custom symbols should be defined here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom command definitions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Custom rules: thick horizontal, thin horizontal, vertical
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\SRule}{\rule{\linewidth}{0.2pt}}
+\newcommand{\VRule}{\color{lightgray}\vrule width 0.5pt}
+
+% "Divider" that comes after each sub-heading
+\newcommand{\divider}{\vskip-7pt\HRule\hfill\vskip-1.1em\SRule\vskip1em}
+
+% Custom-sized line break, to enhance paragraph visibility.
+\newcommand{\mylinebr}{\\[7pt]}
+
+% This is the command used to produce the letter's recipient information.
+% Usage: \sendto{name}{institution}{date}.
+\newcommand{\sendto}[3]{%
+{\large {\bf \textcolor{maincolour}{To: #1}} \hfill #3 \\[2pt] {\it \textcolor{maincolour} #2}
+\textcolor{maincolour}{\divider}}
+}
+
+% This is the command used to produce the letter's recipient information, when the recipient is not known ("To Whom It May Concern").
+% Usage: \sendtwimc{institution}{date}.
+\newcommand{\sendtwimc}[2]{%
+{\large {\bf \textcolor{maincolour}{To Whom It May Concern}} \hfill #2 \\ {\it \textcolor{maincolour} #1}
+\textcolor{maincolour}{\divider}}
+}
+
+% This is the command used to produce the letter's opening text.
+% Usage: \opening{Dear Sir/Madam}.
+\newcommand{\opening}[1]{%
+{#1}
+\vspace{2em}
+}
+
+% This is the command used to wrap the letter's body (currently a NoOp).
+% Usage: \body{text}.
+\newcommand{\body}[1]{%
+{#1}
+}
+
+% This is the command used to produce the letter's closing text.
+% Usage: \closing{Sincerely}{Petar Velickovic}{Attached: CV}.
+\newcommand{\closing}[3]{%
+\vspace{2em}
+{#1} \hfill \\[1em]
+{\bf \textcolor{maincolour}{#2}}
+\vfill
+{\textit{\textbf{\textcolor{gray}{#3}}}}
+}
+
+% Any further custom commands should be defined here
+
+%%%%%%%%%%%%%%%%%%%%%
+% START OF DOCUMENT %
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Avoid printing page numbers
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%
+% MAJOR HEADING %
+%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}[remember picture, overlay, transform shape]
+\node[anchor=north west, rectangle, text width=\paperwidth, text badly centered, text height=3.75em, text depth=4.5em, fill=white] (nd) at (current page.north west) 
+{\textcolor{maincolour}{
+	% Name
+	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em]
+	% Tagline 
+	{\Large Computer Science Graduate} \\[0.25em] 
+	% Contact data
+	{\begin{tabular}{c c c c c} 
+	+44 (0)7449 815 434 (UK) & \textbullet & 
+	{\tt pv273@cam.ac.uk} & \textbullet 
+	& +381 (0)62 270 658 (Serbia)
+	\end{tabular}} 
+	}
+};
+\draw[very thick, maincolour] (nd.south west) -- (nd.south east);
+\draw[very thin, maincolour] ([yshift=-0.2em]nd.south west) -- ([yshift=-0.2em]nd.south east);
+\end{tikzpicture}
+
+\vspace{6em}
+
+%%%%%%%%%%%%%%%%%%%%%
+% RECIPIENT DETAILS %
+%%%%%%%%%%%%%%%%%%%%%
+
+\sendto{Dr Lipsum Dolor}{University of Belgrade \\ Artificial Intelligence Group}{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% INITIAL ADDRESSING %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\opening{Dear Sir/Madam,}
+
+%%%%%%%%%%%%%%%
+% LETTER BODY %
+%%%%%%%%%%%%%%%
+
+\body{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \mylinebrSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? \mylinebrAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.}
+
+%%%%%%%%%%%%%%%%%%%%
+% FINAL ADDRESSING %
+%%%%%%%%%%%%%%%%%%%%
+
+\closing{Sincerely,}{Petar Veli\v{c}kovi\'{c}}{Attached: Curriculum Vit\ae}
+
+%%%%%%%%%%%%%%%%%%%
+% END OF DOCUMENT %
+%%%%%%%%%%%%%%%%%%%
+
+\end{document}
