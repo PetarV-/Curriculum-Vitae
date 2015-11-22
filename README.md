@@ -8,6 +8,7 @@ Furthermore, the template is extremely customisable, and heavily commented in th
 
 ## Building
 To build the .pdf files, simply run
+    
     $ pdflatex "Petar Veličković - Curriculum Vitae.tex"
 
     $ pdflatex "Petar Veličković - Cover Letter.tex"
