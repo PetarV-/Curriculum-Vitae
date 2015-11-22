@@ -2,7 +2,7 @@
 The latest version of my CV (with matching cover letter), powered by LaTeX and TikZ.
 
 ## Style
-This CV + cover letter template is designed to be minimalistic and professional (depending on a colorscheme of b&w with only one additional colour), while still showing off LaTeX and TikZ skills.
+This CV + cover letter template is designed to be minimalistic and professional (depending on a colourscheme of b&w with only one additional colour), while still showing off LaTeX and TikZ skills.
 
 Furthermore, the template is extremely customisable, and heavily commented in the preamble to facilitate this. Feel free to contact me if you encounter any issues while customising!
 
