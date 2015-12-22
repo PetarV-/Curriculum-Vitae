@@ -18,6 +18,7 @@
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{epstopdf}
 
 % Any additional packages to be loaded here
 
@@ -177,18 +178,22 @@
 %%%%%%%%%%%%%%%%%
 
 \begin{tikzpicture}[remember picture, overlay, transform shape]
-\node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=4.5em, fill=maincolour] at (current page.north west) 
+\node[anchor=north west, rectangle, text width=\paperwidth, text centered, text height=3.75em, text depth=5.5em, fill=maincolour] at (current page.north west) 
 {\textcolor{white}{
 	% Name
 	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em]
 	% Tagline 
-	{\Large Computer Science Graduate} \\[0.25em] 
+	{\Large PhD student in Machine Learning and Bioinformatics} \\[0.25em] 
 	% Contact data
 	{\begin{tabular}{c c c c c} 
 	+44 (0)7449 815 434 (UK) & \textbullet & 
 	{\tt pv273@cam.ac.uk} & \textbullet 
 	& +381 (0)62 270 658 (Serbia)
-	\end{tabular}} 
+	\end{tabular}}  \\[0.25em]
+	{\begin{tabular}{r c r c} 
+	\includegraphics[width=1em]{assets/GitHub-Mark.eps} & 
+	{\href{https://github.com/PetarV-}{\tt github.com/PetarV-}} & \includegraphics[width=1em]{assets/In-White-2in-TM.eps} & {\href{https://uk.linkedin.com/in/petarvelickovic}{\tt uk.linkedin.com/in/petarvelickovic}}
+	\end{tabular}}
 	}
 };
 \end{tikzpicture}
@@ -203,7 +208,14 @@
 
 \cvtable{%
 
-\fillbar{1.49}{2.6}{2012--2015} & \mainitem{Trinity College, University of Cambridge} {BA Hons.\ (Cantab.), Computer Science}{Cambridge, United Kingdom}{} 
+\fillbar{2.6}{2.6}{2016--present} & \mainitem{Trinity College, University of Cambridge} {Doctor of Philosophy (PhD), Machine Learning and Bioinformatics}{Cambridge, United Kingdom}{} 
+\sitemize{%
+	\sitem Research proposal: \emph{``Developing machine learning algorithms on complex networks''}
+	\sitem Supervised by Dr Pietro Li\`{o} and Dr Thomas Sauerwald (second adviser)
+} \vspace{-\baselineskip}\mbox{}
+\\[5pt]
+
+\fillbar{1.49}{2.6}{2012--2015} & \mainitem{Trinity College, University of Cambridge} {Bachelor of Arts (BA Hons.\ (Cantab.)), Computer Science}{Cambridge, United Kingdom}{} 
 	
 \sitemize{%
 	\sitem Results:
@@ -236,26 +248,28 @@
 
 \cvtable{%
 
+\fillbar{2.6}{2.6}{2016--present} & \mainitem{University of Cambridge}{Research Assistant in Computational Biology}{Cambridge, United Kingdom}{}
+\sitemize{%
+	\sitem Computer Laboratory | Artificial Intelligence Group
+} \vspace{-\baselineskip}\mbox{}
+\\[5pt]
+
 \fillbar{2.385}{2.478}{Jun--Sep 2015} & \mainitem{Jane Street Europe Limited}{Software Developer Intern}{London, United Kingdom}{New York, United States}
 
 \sitemize{%
 	\sitem Development of a translator from a new S-expression based linear temporal logic (LTL) query language into a form recognisable by an existing LTL query solver
 	\sitem Development of an algorithm and model implementation that automates a critical process within a distributed system used for the purposes of facilitating trading
-	\sitem Optimisations of several subroutines within Jane Street's Bignum library for arbitrary precision arithmetic, as well as the underlying open-source project (Zarith)
-} % Here we do not need to remove space, as we have further content under the sub-items
-\vspace{0.5em}
-\keywordbox{OCaml}\keywordbox{C}\keywordbox{Core}\keywordbox{LTL}\keywordbox{RPC}\keywordbox{Async}\keywordbox{vim}\keywordbox{Mercurial}\keywordbox{Unix}
+	%\sitem Optimisations of several subroutines within Jane Street's Bignum library for arbitrary precision arithmetic, as well as the underlying open-source project (Zarith)
+} \vspace{-\baselineskip}\mbox{}
 \\[5pt]
 
 \fillbar{2.015}{2.077}{Jun--Aug 2014} & \mainitem{University of Cambridge}{Undergraduate Researcher}{Cambridge, United Kingdom}{} 
 
 \sitemize{%
 	\sitem Computer Laboratory | Computer Architecture Group
-	\sitem Exploring the teaching and research potentials of the recent Arrow SoCKit board containing the Altera Cyclone V System-on-Chip FPGA
+	%\sitem Exploring the teaching and research potentials of the recent Arrow SoCKit board containing the Altera Cyclone V System-on-Chip FPGA
 	\sitem Development of hardware and tools for debugging and tracing, as part of the ongoing CHERI research project (\texttt{http://chericpu.org})
-} 	
-\vspace{0.5em}
-\keywordbox{Bluespec}\keywordbox{SystemVerilog}\keywordbox{C}\keywordbox{Assembly}\keywordbox{Altera Quartus}\keywordbox{FPGA}\keywordbox{git}\keywordbox{Kernel}\keywordbox{Unix}
+} \vspace{-\baselineskip}\mbox{}
 \\[5pt]
 
 \fillbar{1.645}{1.738}{Jun--Sep 2013} & \mainitem{Microsoft Development Center Serbia}{Intern Software Design Engineer}{Belgrade, Serbia}{}
@@ -263,9 +277,7 @@
 \sitemize{%
 	\sitem SQL Server Team | Service Foundation Division
 	\sitem Worked on development of the prototype for a new C$^\sharp$ and WCF-based stress testing tool on SQL Azure production clusters
-}
-\vspace{0.5em}
-\keywordbox{C\#}\keywordbox{WCF}\keywordbox{.NET}\keywordbox{SQL}\keywordbox{Async}\keywordbox{TCP}\keywordbox{Visual Studio}\keywordbox{Windows}
+}\vspace{-\baselineskip}\mbox{}
 }
 
 % Breaking the page early here to make a nice split.
@@ -357,7 +369,7 @@
 \stars{4}{5}{Experienced} & MATLAB, SQL, Pascal, SystemVerilog, Bluespec, Altera Quartus, \texttt{vim}\newline Theoretical Computer Science, Numerical Analysis
 \\[5pt]
 
-\stars{3}{5}{Skilled} & ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
+\stars{3}{5}{Skilled} & Rust, ML, Prolog, Mercurial, \texttt{gnuplot}\newline Natural Sciences, Probability, Kernel Programming (Linux)
 }
 
 %%%%%%%%%%%%%%%%%%%
