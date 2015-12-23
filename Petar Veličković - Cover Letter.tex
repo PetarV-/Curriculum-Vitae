@@ -19,6 +19,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage[UKenglish]{isodate}
+\usepackage{epstopdf}
 
 % Any additional packages to be loaded here
 
@@ -157,18 +158,22 @@
 %%%%%%%%%%%%%%%%%
 
 \begin{tikzpicture}[remember picture, overlay, transform shape]
-\node[anchor=north west, rectangle, text width=\paperwidth, text badly centered, text height=3.75em, text depth=4.5em, fill=white] (nd) at (current page.north west) 
+\node[anchor=north west, rectangle, text width=\paperwidth, text badly centered, text height=3.75em, text depth=5.5em, fill=white] (nd) at (current page.north west) 
 {\textcolor{maincolour}{
 	% Name
 	{\Huge \bf Petar Veli\v{c}kovi\'{c}} \\[0.5em]
 	% Tagline 
-	{\Large Computer Science Graduate} \\[0.25em] 
+	{\Large PhD Student in Machine Learning and Bioinformatics} \\[0.25em] 
 	% Contact data
 	{\begin{tabular}{c c c c c} 
 	+44 (0)7449 815 434 (UK) & \textbullet & 
 	{\tt pv273@cam.ac.uk} & \textbullet 
 	& +381 (0)62 270 658 (Serbia)
-	\end{tabular}} 
+	\end{tabular}}  \\[0.25em]
+	{\begin{tabular}{r c r c} 
+	\includegraphics[width=1em]{assets/GitHub-Mark-Blue.eps} & 
+	{\href{https://github.com/PetarV-}{\tt github.com/PetarV-}} & \includegraphics[width=1em]{assets/In-Blue-2in-TM.eps} & {\href{https://uk.linkedin.com/in/petarvelickovic}{\tt uk.linkedin.com/in/petarvelickovic}}
+	\end{tabular}}
 	}
 };
 \draw[line width=0.5mm, maincolour] (nd.south west) -- (nd.south east);
